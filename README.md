@@ -1,2 +1,2 @@
-# knmala-codes.github.io
+# kachanamala-dev.github.io
 Personal Portfolio Website
