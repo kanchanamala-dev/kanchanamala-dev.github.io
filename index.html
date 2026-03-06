@@ -113,6 +113,10 @@ nav.scrolled{background:rgba(4,6,15,0.85);backdrop-filter:blur(20px);border-bott
 .proj-row:hover{background:rgba(255,107,43,0.10);box-shadow:inset 0 0 40px rgba(255,107,43,0.06)}
 .proj-row:hover::after{transform:scaleY(1)}
 .proj-row:hover .proj-desc{color:var(--muted2)}
+.proj-row.has-link{cursor:pointer}
+.proj-row.has-link:hover .proj-github-hint{opacity:1;transform:translateY(0)}
+.proj-github-hint{position:absolute;top:10px;right:14px;display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;color:var(--orange);letter-spacing:.08em;opacity:0;transform:translateY(-4px);transition:opacity .25s,transform .25s;pointer-events:none}
+.proj-github-hint svg{flex-shrink:0}
 .proj-num{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.08em}
 .proj-name{font-size:16px;font-weight:600;margin-bottom:4px;transition:color .2s}
 .proj-row:hover .proj-name{color:var(--orange)}
@@ -123,6 +127,10 @@ nav.scrolled{background:rgba(4,6,15,0.85);backdrop-filter:blur(20px);border-bott
 .tag.orange{border-color:rgba(255,107,43,0.35);color:var(--orange);background:rgba(255,107,43,0.06)}
 .tag.cyan{border-color:rgba(0,229,255,0.3);color:var(--cyan);background:rgba(0,229,255,0.05)}
 .tag.green{border-color:rgba(57,255,143,0.3);color:var(--green);background:rgba(57,255,143,0.05)}
+/* CERT CARD CLICKABLE */
+.edu-card.cert-link{cursor:pointer;position:relative}
+.edu-card.cert-link .cert-hint{position:absolute;top:14px;right:16px;display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:.08em;opacity:0;transform:translateY(-4px);transition:opacity .25s,transform .25s;pointer-events:none}
+.edu-card.cert-link:hover .cert-hint{opacity:1;transform:translateY(0)}
 
 /* EDUCATION */
 .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:56px}
@@ -250,7 +258,7 @@ nav.scrolled{background:rgba(4,6,15,0.85);backdrop-filter:blur(20px);border-bott
         <div class="hero-card-right">
           <div class="status-row"><div class="pulse-dot"></div><span>Open to internship opportunities</span></div>
           <div class="hero-contact">
-            <span>📧 <a href="https://mail.google.com/mail/?view=cm&to=malakanchana26@gmail.com&su=Internship%20Opportunity&body=Hi%20Kanchanamala%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20love%20to%20connect!" target="_blank" style="color:var(--cyan)">malakanchana26@gmail.com</a></span>
+            <span>📧 <a href="https://mail.google.com/mail/?view=cm&to=malakanchana26@gmail.com&su=Internship%20Opportunity&body=Hi%20Kanchanamala%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20love%20to%20connect!" target="_blank" style="color:var(--cyan)"><span class="__cf_email__" data-cfemail="c8a5a9a4a9a3a9a6aba0a9a6a9fafe88afa5a9a1a4e6aba7a5">[email&#160;protected]</span></a></span>
             <span>📍 Chennai, Tamil Nadu, India</span>
             <span>📞 7299668990</span>
           </div>
@@ -323,17 +331,20 @@ nav.scrolled{background:rgba(4,6,15,0.85);backdrop-filter:blur(20px);border-bott
         <div class="proj-main"><div class="proj-name">Junctionless Double Gate MOSFET &amp; CMOS Analysis</div><div class="proj-desc">TCAD simulation of junctionless DG NMOS/PMOS in Synopsys Sentaurus, extracting I–V characteristics and assembling a matched CMOS inverter.</div></div>
         <div class="proj-tags"><span class="tag green">TCAD</span><span class="tag green">VLSI</span><span class="tag orange">Sentaurus</span></div>
       </div>
-      <div class="proj-row">
+      <div class="proj-row has-link" onclick="window.open('https://github.com/kanchanamala-dev/smart-plant-monitoring-system','_blank')">
+        <div class="proj-github-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.52 11.52 0 0 1 3-.405 11.52 11.52 0 0 1 3 .405c2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg> View on GitHub ↗</div>
         <div class="proj-num">05</div>
         <div class="proj-main"><div class="proj-name">IoT-Based Plant Monitoring &amp; Automated Watering</div><div class="proj-desc">NodeMCU system reading soil moisture, temperature, and humidity sensors; triggers irrigation pump and pushes real-time data to a remote dashboard.</div></div>
         <div class="proj-tags"><span class="tag cyan">IoT</span><span class="tag orange">NodeMCU</span><span class="tag green">Automation</span></div>
       </div>
-      <div class="proj-row">
+      <div class="proj-row has-link" onclick="window.open('https://github.com/kanchanamala-dev/currency-counter-ir-colour-sensor','_blank')">
+        <div class="proj-github-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.52 11.52 0 0 1 3-.405 11.52 11.52 0 0 1 3 .405c2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg> View on GitHub ↗</div>
         <div class="proj-num">06</div>
         <div class="proj-main"><div class="proj-name">Currency Detector &amp; Total Amount Calculator</div><div class="proj-desc">Embedded system using IR/color sensor array to identify Indian currency denominations and running a tally, with LCD readout for the total amount.</div></div>
         <div class="proj-tags"><span class="tag orange">Embedded</span><span class="tag cyan">Sensors</span><span class="tag green">LCD</span></div>
       </div>
-      <div class="proj-row">
+      <div class="proj-row has-link" onclick="window.open('https://github.com/kanchanamala-dev/analog-phone-sniffer','_blank')">
+        <div class="proj-github-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.52 11.52 0 0 1 3-.405 11.52 11.52 0 0 1 3 .405c2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg> View on GitHub ↗</div>
         <div class="proj-num">07</div>
         <div class="proj-main"><div class="proj-name">Cell Phone Detector Using Analog Components</div><div class="proj-desc">Antenna + LM357 op-amp circuit that passively senses RF emissions from active mobile phones; PCB-fabricated and tested for proximity detection.</div></div>
         <div class="proj-tags"><span class="tag orange">Analog</span><span class="tag cyan">PCB</span><span class="tag green">RF</span></div>
@@ -412,7 +423,8 @@ nav.scrolled{background:rgba(4,6,15,0.85);backdrop-filter:blur(20px);border-bott
       <h2 class="section-title">Workshops &amp; <em>Certifications</em></h2>
     </div>
     <div class="edu-grid">
-      <div class="edu-card green-hover reveal" data-delay="1" style="border-color:rgba(57,255,143,0.12);">
+      <div class="edu-card cert-link green-hover reveal" data-delay="1" style="border-color:rgba(57,255,143,0.12);" onclick="window.open('https://drive.google.com/file/d/1_GoQfwZJzSRdS-GgBAEmMkE5bp7tMXzO/view?usp=drivesdk','_blank')">
+        <div class="cert-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Certificate available to view ↗</div>
         <div class="edu-icon" style="background:rgba(57,255,143,0.08);border-color:rgba(57,255,143,0.2);">🔬</div>
         <div class="edu-degree">IoT Automation with Raspberry Pi</div>
         <div class="edu-school" style="color:var(--green)">IIT Madras</div>
@@ -426,7 +438,8 @@ nav.scrolled{background:rgba(4,6,15,0.85);backdrop-filter:blur(20px);border-bott
         </div>
         <div class="edu-badge" style="background:rgba(57,255,143,0.08);border-color:rgba(57,255,143,0.2);color:var(--green)">📜 Certified · IIT Madras</div>
       </div>
-      <div class="edu-card green-hover reveal" data-delay="2" style="border-color:rgba(57,255,143,0.12);">
+      <div class="edu-card cert-link green-hover reveal" data-delay="2" style="border-color:rgba(57,255,143,0.12);" onclick="window.open('https://drive.google.com/file/d/1A84l8VAMdkz_UjruGzT964fSjSRNCmpK/view?usp=drivesdk','_blank')">
+        <div class="cert-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Certificate available to view ↗</div>
         <div class="edu-icon" style="background:rgba(57,255,143,0.08);border-color:rgba(57,255,143,0.2);">📡</div>
         <div class="edu-degree">Unlocking the IoT Universe — Hands-on Masterclass</div>
         <div class="edu-school" style="color:var(--green)">VIT Chennai</div>
@@ -556,7 +569,7 @@ nav.scrolled{background:rgba(4,6,15,0.85);backdrop-filter:blur(20px);border-bott
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
 </button>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // CURSOR
 const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
 let mx=0,my=0,rx=0,ry=0;
