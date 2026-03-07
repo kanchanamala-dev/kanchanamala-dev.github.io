@@ -115,7 +115,7 @@ nav.scrolled{background:rgba(4,6,15,0.85);backdrop-filter:blur(20px);border-bott
 .proj-row:hover .proj-desc{color:var(--muted2)}
 .proj-row.has-link{cursor:pointer}
 .proj-row.has-link:hover .proj-github-hint{opacity:1;transform:translateY(0)}
-.proj-github-hint{position:absolute;top:10px;right:14px;display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;color:var(--orange);letter-spacing:.08em;opacity:0;transform:translateY(-4px);transition:opacity .25s,transform .25s;pointer-events:none}
+.proj-github-hint{position:absolute;top:10px;right:14px;display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;color:var(--orange);letter-spacing:.08em;opacity:0;transform:translateY(-4px);transition:opacity .25s,transform .25s;pointer-events:auto;cursor:pointer;text-decoration:none}
 .proj-github-hint svg{flex-shrink:0}
 .proj-num{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.08em}
 .proj-name{font-size:16px;font-weight:600;margin-bottom:4px;transition:color .2s}
@@ -128,8 +128,8 @@ nav.scrolled{background:rgba(4,6,15,0.85);backdrop-filter:blur(20px);border-bott
 .tag.cyan{border-color:rgba(0,229,255,0.3);color:var(--cyan);background:rgba(0,229,255,0.05)}
 .tag.green{border-color:rgba(57,255,143,0.3);color:var(--green);background:rgba(57,255,143,0.05)}
 /* CERT CARD CLICKABLE */
-.edu-card.cert-link{cursor:pointer;position:relative}
-.edu-card.cert-link .cert-hint{position:absolute;top:14px;right:16px;display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:.08em;opacity:0;transform:translateY(-4px);transition:opacity .25s,transform .25s;pointer-events:none}
+.edu-card.cert-link{cursor:none;position:relative}
+.edu-card.cert-link .cert-hint{position:absolute;top:14px;right:16px;display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:.08em;opacity:0;transform:translateY(-4px);transition:opacity .25s,transform .25s;pointer-events:auto;cursor:pointer;text-decoration:none}
 .edu-card.cert-link:hover .cert-hint{opacity:1;transform:translateY(0)}
 
 /* EDUCATION */
@@ -165,19 +165,24 @@ nav.scrolled{background:rgba(4,6,15,0.85);backdrop-filter:blur(20px);border-bott
 .interest-chip span{font-size:16px}
 
 /* TERMINAL */
-.terminal{border:1px solid var(--border);border-radius:12px;background:#040912;overflow:hidden;margin-top:48px}
+.terminal{border:1px solid var(--border);border-radius:12px;background:#040912;overflow:hidden;margin-top:48px;width:100%;min-width:0}
 .terminal-bar{padding:10px 16px;background:rgba(255,255,255,0.04);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
 .t-dot{width:12px;height:12px;border-radius:50%}
 .t-dot.red{background:#ff5f57}.t-dot.yellow{background:#febc2e}.t-dot.green{background:#28c840}
 .t-title{font-family:var(--mono);font-size:11px;color:var(--muted);margin:0 auto;letter-spacing:.1em}
-.terminal-body{padding:20px 22px;font-family:var(--mono);font-size:13px;line-height:1.8;min-height:120px}
+.terminal-body{padding:20px 22px;font-family:var(--mono);font-size:13px;line-height:1.8;min-height:120px;overflow:hidden;width:100%}
+.terminal-body > div{white-space:pre;overflow-x:auto;overflow-y:hidden;max-width:100%;scrollbar-width:none;-ms-overflow-style:none}
+.terminal-body > div::-webkit-scrollbar{display:none}
+.t-output-wrap{position:relative}
+.t-output-wrap::after{content:'';position:absolute;right:0;top:0;bottom:0;width:32px;background:linear-gradient(to right,transparent,#040912);pointer-events:none}
 .t-prompt{color:var(--green)}
 .t-path{color:var(--cyan)}
 .t-cursor{display:inline-block;width:8px;height:14px;background:var(--orange);vertical-align:text-bottom;animation:blink .9s step-end infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
 /* CONTACT */
-#contact{padding:100px 0 60px;text-align:center}
+#contact{padding:0 0 60px}
+@media(max-width:900px){#contact .contact-grid{grid-template-columns:1fr !important}}
 .contact-inner{max-width:700px;margin:0 auto}
 .contact-links{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:36px}
 .contact-link{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:8px;border:1px solid var(--border-lit);background:var(--surface);font-family:var(--mono);font-size:12px;color:var(--muted2);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:all .25s;cursor:none}
@@ -331,20 +336,20 @@ nav.scrolled{background:rgba(4,6,15,0.85);backdrop-filter:blur(20px);border-bott
         <div class="proj-main"><div class="proj-name">Junctionless Double Gate MOSFET &amp; CMOS Analysis</div><div class="proj-desc">TCAD simulation of junctionless DG NMOS/PMOS in Synopsys Sentaurus, extracting I–V characteristics and assembling a matched CMOS inverter.</div></div>
         <div class="proj-tags"><span class="tag green">TCAD</span><span class="tag green">VLSI</span><span class="tag orange">Sentaurus</span></div>
       </div>
-      <div class="proj-row has-link" onclick="window.open('https://github.com/kanchanamala-dev/smart-plant-monitoring-system','_blank')">
-        <div class="proj-github-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.52 11.52 0 0 1 3-.405 11.52 11.52 0 0 1 3 .405c2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg> View on GitHub ↗</div>
+      <div class="proj-row has-link">
+        <a class="proj-github-hint" href="https://github.com/kanchanamala-dev/smart-plant-monitoring-system" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.52 11.52 0 0 1 3-.405 11.52 11.52 0 0 1 3 .405c2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg> View on GitHub ↗</a>
         <div class="proj-num">05</div>
         <div class="proj-main"><div class="proj-name">IoT-Based Plant Monitoring &amp; Automated Watering</div><div class="proj-desc">NodeMCU system reading soil moisture, temperature, and humidity sensors; triggers irrigation pump and pushes real-time data to a remote dashboard.</div></div>
         <div class="proj-tags"><span class="tag cyan">IoT</span><span class="tag orange">NodeMCU</span><span class="tag green">Automation</span></div>
       </div>
-      <div class="proj-row has-link" onclick="window.open('https://github.com/kanchanamala-dev/currency-counter-ir-colour-sensor','_blank')">
-        <div class="proj-github-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.52 11.52 0 0 1 3-.405 11.52 11.52 0 0 1 3 .405c2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg> View on GitHub ↗</div>
+      <div class="proj-row has-link">
+        <a class="proj-github-hint" href="https://github.com/kanchanamala-dev/currency-counter-ir-colour-sensor" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.52 11.52 0 0 1 3-.405 11.52 11.52 0 0 1 3 .405c2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg> View on GitHub ↗</a>
         <div class="proj-num">06</div>
         <div class="proj-main"><div class="proj-name">Currency Detector &amp; Total Amount Calculator</div><div class="proj-desc">Embedded system using IR/color sensor array to identify Indian currency denominations and running a tally, with LCD readout for the total amount.</div></div>
         <div class="proj-tags"><span class="tag orange">Embedded</span><span class="tag cyan">Sensors</span><span class="tag green">LCD</span></div>
       </div>
       <div class="proj-row has-link" onclick="window.open('https://github.com/kanchanamala-dev/analog-phone-sniffer','_blank')">
-        <div class="proj-github-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.52 11.52 0 0 1 3-.405 11.52 11.52 0 0 1 3 .405c2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg> View on GitHub ↗</div>
+        <a class="proj-github-hint" href="https://github.com/kanchanamala-dev/analog-phone-sniffer" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.52 11.52 0 0 1 3-.405 11.52 11.52 0 0 1 3 .405c2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg> View on GitHub ↗</a>
         <div class="proj-num">07</div>
         <div class="proj-main"><div class="proj-name">Cell Phone Detector Using Analog Components</div><div class="proj-desc">Antenna + LM357 op-amp circuit that passively senses RF emissions from active mobile phones; PCB-fabricated and tested for proximity detection.</div></div>
         <div class="proj-tags"><span class="tag orange">Analog</span><span class="tag cyan">PCB</span><span class="tag green">RF</span></div>
@@ -423,8 +428,8 @@ nav.scrolled{background:rgba(4,6,15,0.85);backdrop-filter:blur(20px);border-bott
       <h2 class="section-title">Workshops &amp; <em>Certifications</em></h2>
     </div>
     <div class="edu-grid">
-      <div class="edu-card cert-link green-hover reveal" data-delay="1" style="border-color:rgba(57,255,143,0.12);" onclick="window.open('https://drive.google.com/file/d/1_GoQfwZJzSRdS-GgBAEmMkE5bp7tMXzO/view?usp=drivesdk','_blank')">
-        <div class="cert-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Certificate available to view ↗</div>
+      <div class="edu-card cert-link green-hover reveal" data-delay="1" style="border-color:rgba(57,255,143,0.12);">
+        <a class="cert-hint" href="https://drive.google.com/file/d/1_GoQfwZJzSRdS-GgBAEmMkE5bp7tMXzO/view?usp=drivesdk" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Certificate available to view ↗</a>
         <div class="edu-icon" style="background:rgba(57,255,143,0.08);border-color:rgba(57,255,143,0.2);">🔬</div>
         <div class="edu-degree">IoT Automation with Raspberry Pi</div>
         <div class="edu-school" style="color:var(--green)">IIT Madras</div>
@@ -438,8 +443,8 @@ nav.scrolled{background:rgba(4,6,15,0.85);backdrop-filter:blur(20px);border-bott
         </div>
         <div class="edu-badge" style="background:rgba(57,255,143,0.08);border-color:rgba(57,255,143,0.2);color:var(--green)">📜 Certified · IIT Madras</div>
       </div>
-      <div class="edu-card cert-link green-hover reveal" data-delay="2" style="border-color:rgba(57,255,143,0.12);" onclick="window.open('https://drive.google.com/file/d/1A84l8VAMdkz_UjruGzT964fSjSRNCmpK/view?usp=drivesdk','_blank')">
-        <div class="cert-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Certificate available to view ↗</div>
+      <div class="edu-card cert-link green-hover reveal" data-delay="2" style="border-color:rgba(57,255,143,0.12);">
+        <a class="cert-hint" href="https://drive.google.com/file/d/1A84l8VAMdkz_UjruGzT964fSjSRNCmpK/view?usp=drivesdk" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Certificate available to view ↗</a>
         <div class="edu-icon" style="background:rgba(57,255,143,0.08);border-color:rgba(57,255,143,0.2);">📡</div>
         <div class="edu-degree">Unlocking the IoT Universe — Hands-on Masterclass</div>
         <div class="edu-school" style="color:var(--green)">VIT Chennai</div>
@@ -489,19 +494,6 @@ nav.scrolled{background:rgba(4,6,15,0.85);backdrop-filter:blur(20px);border-bott
       </div>
     </div>
 
-    <!-- TERMINAL -->
-    <div class="terminal reveal">
-      <div class="terminal-bar">
-        <div class="t-dot red"></div>
-        <div class="t-dot yellow"></div>
-        <div class="t-dot green"></div>
-        <div class="t-title">kanchana@ece ~ zsh</div>
-      </div>
-      <div class="terminal-body" id="terminal-body">
-        <div id="first-prompt" style="font-family:var(--mono);font-size:12px;margin-bottom:3px"><span style="color:var(--green)">kanchana</span><span style="color:var(--muted)">@</span><span style="color:var(--cyan)">~/portfolio</span><span style="color:var(--muted)"> $ </span><span id="t-cmd"></span><span class="t-cursor" id="t-cur"></span></div>
-      </div>
-    </div>
-
     <div class="interests-row reveal">
       <div class="interest-chip"><span>⚡</span> Embedded Systems</div>
       <div class="interest-chip"><span>🌐</span> Internet of Things</div>
@@ -520,13 +512,14 @@ nav.scrolled{background:rgba(4,6,15,0.85);backdrop-filter:blur(20px);border-bott
 <!-- CONTACT -->
 <section id="contact">
   <div class="wrap">
-    <div class="contact-inner">
-      <div class="reveal">
-        <div class="section-label" style="justify-content:center;margin-bottom:18px;">07 <span>/ Get in touch</span></div>
-        <h2 class="section-title">Let's <em>connect</em></h2>
-        <p style="margin-top:14px;font-size:16px;color:var(--muted2);line-height:1.8">I'm actively looking for internship opportunities in embedded systems, IoT, or ECE-adjacent domains. If you're working on something interesting, I'd love to hear from you.</p>
-      </div>
-      <div class="contact-links reveal">
+    <div class="contact-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;padding:100px 0 0">
+      <div class="contact-inner" style="text-align:left;max-width:none;margin:0">
+        <div class="reveal">
+          <div class="section-label" style="margin-bottom:18px;">07 <span>/ Get in touch</span></div>
+          <h2 class="section-title">Let's <em>connect</em></h2>
+          <p style="margin-top:14px;font-size:16px;color:var(--muted2);line-height:1.8">I'm actively looking for internship opportunities in embedded systems, IoT, or ECE-adjacent domains. If you're working on something interesting, I'd love to hear from you.</p>
+        </div>
+        <div class="contact-links reveal" style="justify-content:flex-start;">
         <a href="https://mail.google.com/mail/?view=cm&to=malakanchana26@gmail.com&su=Internship%20Opportunity&body=Hi%20Kanchanamala%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20love%20to%20connect!" target="_blank" class="contact-link">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           Send Email
@@ -555,11 +548,31 @@ nav.scrolled{background:rgba(4,6,15,0.85);backdrop-filter:blur(20px);border-bott
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download Resume
         </a>
+        </div>
+      </div>
+      <!-- TERMINAL side-by-side -->
+      <div class="reveal" style="padding-top:8px">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <div class="t-dot red"></div>
+            <div class="t-dot yellow"></div>
+            <div class="t-dot green"></div>
+            <div class="t-title">kanchana@ece ~ zsh</div>
+          </div>
+          <div class="terminal-body" id="terminal-body">
+            <div id="first-prompt" style="font-family:var(--mono);font-size:12px;margin-bottom:3px"><span style="color:var(--green)">kanchana</span><span style="color:var(--muted)">@</span><span style="color:var(--cyan)">~/portfolio</span><span style="color:var(--muted)"> $ </span><span id="t-cmd"></span><span class="t-cursor" id="t-cur"></span></div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom wrap">
+    <div class="footer-bottom wrap" style="margin-top:0;padding-top:40px;padding-bottom:0;border-top:1px solid var(--border)">
       <span>Kanchanamala P — <span>ECE · VIT Chennai</span></span>
-      <span style="color:var(--muted)">Built with precision. ✦ 2025</span>
+    </div>
+    <div style="display:flex;justify-content:center;padding:32px 0 60px">
+      <button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="display:inline-flex;align-items:center;gap:10px;padding:14px 32px;border-radius:999px;border:1px solid var(--border-lit);background:var(--surface);font-family:var(--mono);font-size:12px;color:var(--muted2);letter-spacing:.12em;text-transform:uppercase;cursor:none;transition:border-color .25s,background .25s,color .25s,box-shadow .25s,transform .2s" onmouseenter="this.style.borderColor='rgba(255,107,43,0.6)';this.style.background='rgba(255,107,43,0.08)';this.style.color='var(--orange)';this.style.boxShadow='0 0 24px rgba(255,107,43,0.15)';this.style.transform='translateY(-2px)'" onmouseleave="this.style.borderColor='';this.style.background='var(--surface)';this.style.color='var(--muted2)';this.style.boxShadow='';this.style.transform=''">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+        Back to Top
+      </button>
     </div>
   </div>
 </section>
@@ -698,8 +711,8 @@ function fallbackCopy(text,onSuccess,onFail){
 var tLines=[
   {cmd:'whoami',                     out:'kanchanamala_p  --  ECE student @ VIT Chennai (2024-2028)'},
   {cmd:'cat cgpa.txt',               out:'9.3 / 10  *  Programme Representative 2024-25'},
-  {cmd:'ls projects/',               out:'whistle_stove/  energy_monitor/  morse_fpga/  plant_iot/  currency_detector/  cell_detector/  jldg_mosfet/'},
-  {cmd:'cat skills.json | grep top', out:'STM32 · Raspberry Pi · Verilog · Python · PCB · InfluxDB · Sentaurus'},
+  {cmd:'ls projects/',               out:'whistle_stove/  energy_monitor/  morse_fpga/\nplant_iot/  currency_det/  cell_sniffer/  jldg_mosfet/'},
+  {cmd:'cat skills.json | grep top', out:'STM32 · Raspberry Pi · Verilog · Python\nPCB · InfluxDB · Sentaurus · Embedded C'},
   {cmd:'echo $STATUS',               out:'[OK]  Open to internship opportunities in Embedded / IoT / ECE'}
 ];
 var summaryLines=[
@@ -725,13 +738,17 @@ var tli=0,tci=0,tphase='typing';
 var tcmd=document.getElementById('t-cmd');
 var tcur=document.getElementById('t-cur');
 var tbody=document.getElementById('terminal-body');
+// Move cursor to always sit right after tcmd
+tcmd.parentNode.insertBefore(tcur, tcmd.nextSibling);
 
 function addTLine(text,color){
+  var wrap=document.createElement('div');
+  wrap.className='t-output-wrap';
   var d=document.createElement('div');
-  d.style.cssText='font-family:var(--mono);font-size:12px;color:'+(color||'var(--muted2)')+';margin-bottom:2px;white-space:pre';
+  d.style.cssText='font-family:var(--mono);font-size:12px;color:'+(color||'var(--muted2)')+';margin-bottom:2px;white-space:pre;overflow-x:auto;scrollbar-width:none';
   d.textContent=text;
-  tbody.insertBefore(d,document.getElementById('first-prompt').nextSibling||null);
-  tbody.appendChild(d);
+  wrap.appendChild(d);
+  tbody.appendChild(wrap);
 }
 function addPromptLine(){
   var p=document.createElement('div');
@@ -740,6 +757,7 @@ function addPromptLine(){
   tbody.appendChild(p);
   p.appendChild(tcmd);
   tcmd.textContent='';
+  p.appendChild(tcur); // cursor always follows into new prompt line
 }
 function showSummary(){
   tcur.style.display='none';
@@ -781,7 +799,7 @@ function runTerminal(){
 
 var tro=new IntersectionObserver(function(entries){
   if(entries[0].isIntersecting){runTerminal();tro.disconnect();}
-},{threshold:.4});
+},{threshold:.2});
 tro.observe(document.querySelector('.terminal'));
 </script>
 </body>
