@@ -214,7 +214,7 @@ nav.scrolled{background:rgba(4,6,15,0.85);backdrop-filter:blur(20px);border-bott
 <div id="cursor"></div>
 <div id="cursor-ring"></div>
 <div class="hero-glow"></div>
-<canvas id="particle-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.5"></canvas>
+<canvas id="particle-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:2;opacity:.7"></canvas>
 
 <!-- NAV -->
 <nav id="main-nav">
@@ -658,29 +658,36 @@ document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.
 
 // CURSOR TRAIL SPARKS
 (function(){
-  var lastX=0,lastY=0,throttle=0;
+  var lastX=0,lastY=0,throttle=0,count=0,max=5;
   document.addEventListener('mousemove',function(e){
     var now=Date.now();
-    if(now-throttle<80) return;
+    if(now-throttle<90||count>=max) return;
     throttle=now;
     var dx=e.clientX-lastX,dy=e.clientY-lastY;
-    if(Math.abs(dx)+Math.abs(dy)<12) return;
+    if(Math.abs(dx)+Math.abs(dy)<6) return;
     lastX=e.clientX;lastY=e.clientY;
+    var colors=['#ff6b2b','#00e5ff','#39ff8f'];
+    var c1=colors[Math.floor(Math.random()*3)];
+    var c2=colors[Math.floor(Math.random()*3)];
+    var size=5+Math.random()*6;
+    var tx=(Math.random()-.5)*32,ty=(Math.random()-.5)*32-10;
     var spark=document.createElement('div');
-    var colors=['var(--orange)','var(--cyan)','var(--green)'];
-    var size=3+Math.random()*4;
     spark.style.cssText='position:fixed;border-radius:50%;pointer-events:none;z-index:99997;'
       +'width:'+size+'px;height:'+size+'px;'
-      +'background:'+colors[Math.floor(Math.random()*3)]+';'
+      +'background:'+c1+';'
+      +'box-shadow:0 0 '+(size*1.5)+'px '+c2+';'
       +'left:'+(e.clientX-size/2)+'px;top:'+(e.clientY-size/2)+'px;'
-      +'opacity:.85;transition:transform .5s ease,opacity .5s ease;';
+      +'opacity:0.75;will-change:transform,opacity;';
+    count++;
     document.body.appendChild(spark);
-    var tx=(Math.random()-.5)*24,ty=(Math.random()-.5)*24-8;
     requestAnimationFrame(function(){
-      spark.style.transform='translate('+tx+'px,'+ty+'px) scale(0)';
-      spark.style.opacity='0';
+      requestAnimationFrame(function(){
+        spark.style.transition='transform .7s ease,opacity .7s ease';
+        spark.style.transform='translate('+tx+'px,'+ty+'px) scale(0)';
+        spark.style.opacity='0';
+      });
     });
-    setTimeout(function(){spark.remove()},520);
+    setTimeout(function(){spark.remove();count--;},750);
   });
 })();
 
@@ -698,11 +705,11 @@ document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.
     particles.push({
       x:Math.random()*window.innerWidth,
       y:Math.random()*window.innerHeight,
-      r:Math.random()*1.8+0.4,
-      vx:(Math.random()-.5)*0.18,
-      vy:(Math.random()-.5)*0.18,
+      r:Math.random()*2.5+0.8,
+      vx:(Math.random()-.5)*0.22,
+      vy:(Math.random()-.5)*0.22,
       c:colors[Math.floor(Math.random()*3)],
-      a:Math.random()*0.35+0.05
+      a:Math.random()*0.18+0.06
     });
   }
   function draw(){
@@ -757,13 +764,14 @@ document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.
       var r=btn.getBoundingClientRect();
       var cx=r.left+r.width/2, cy=r.top+r.height/2;
       var isHeroBtn=btn.classList.contains('btn-primary')||btn.classList.contains('btn-ghost');
-      var strength=btn.classList.contains('edu-card')?0.06:isHeroBtn?0.1:0.28;
+      var strength=btn.classList.contains('edu-card')?0.06:isHeroBtn?0.1:0.22;
       var dx=(e.clientX-cx)*strength, dy=(e.clientY-cy)*strength;
+      btn.style.transition='transform .15s ease';
       btn.style.transform='translate('+dx+'px,'+dy+'px)';
     });
     btn.addEventListener('mouseleave',function(){
-      btn.style.transform='';
       btn.style.transition='transform .4s cubic-bezier(.25,.46,.45,.94)';
+      btn.style.transform='translate(0,0)';
       setTimeout(function(){btn.style.transition=''},400);
     });
   });
